@@ -9,7 +9,7 @@ hydra:
 defaults:
   - dicode_manager: default
   - gen_manager: default
-  - training: ppo_tr
+  - training: default
   - evaluation: default
   - validation: default
   - visualize: default

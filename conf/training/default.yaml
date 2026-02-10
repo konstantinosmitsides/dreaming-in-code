@@ -1,65 +1,70 @@
-# conf/training/default.yaml
-
+# ======================================================
+# PART 1: EXACT CONFIGURATION FROM SCRIPT B (Priority)
+# ======================================================
 env_name: Craftax-Symbolic-v1
-num_envs: 4096
-total_timesteps: 1e9
 lr: 2e-4
-num_steps: 64
+min_lr: 2e-6
+num_envs: 1024    
+num_steps: 128   
+total_timesteps: 2_005_401_600
 update_epochs: 4
 num_minibatches: 8
-gamma: 0.99
+gamma: 0.999     
 gae_lambda: 0.8
 clip_eps: 0.2
-ent_coef: 0.01
+ent_coef: 0.002   
 vf_coef: 0.5
 max_grad_norm: 1.0
-activation: tanh
-anneal_lr: false
-lr_decay_rate: 0.99
-anneal_method: exponential # Options: "exponential", "linear"
-debug: true
-jit: true
-seed: 42
-use_wandb: true
-save_policy: false
-num_repeats: 1
-layer_size: 512
-num_unique_envs: 1
-perf_alpha: 0.1
-mastery_threshold: 0.90
-min_samples: 512
-curriculum_update_interval: 50
-lp_window_k: 10
-warmup_updates: 100
-lp_stop_threshold: 0.001
-lp_patience: 15
-ema_alpha_sr: 0.1
-ema_alpha_lp: 0.1
+activation: relu  
+anneal_lr: true   
+# --- Transformer Architecture (From Script B) ---
+qkv_features: 256
+embed_size: 256       
+num_heads: 8
+num_layers: 2
+hidden_layers: 256   
+window_mem: 128
+window_grad: 64
+gating: true
+gating_bias: 2.0
 
-pacing_mechanism: "global_average"  # Options: "global_average", "per_task"
-patience_termination_frac: 0.5 # Terminate when 80% of tasks have exhausted their patience
-
-lp_mechanism: "regression"  # Options: "ema_diff", "regression"
-lp_regression_window: 50    # Number of recent valid SR data points to use for the regression
-
-condition_on_task: true
-conditioning_type: "embedding" 
-embedding_size: 1024
-
-
-use_optimistic_resets: true
+# --- System & Logging ---
 optimistic_reset_ratio: 16
+use_wandb: true
+wandb_project: SIACE
+wandb_entity: airl-lab
+debug: true
+num_repeats: 1
 
+# --- Checkpointing ---
+checkpoint_dir: "rl_checkpoints/"
+checkpoint_interval_updates: 100
+checkpoint_keep_period: 300
+max_checkpoints_to_keep: 10
+load_checkpoint: False
 
+# ======================================================
+# PART 2: ORCHESTRATOR PARAMS FROM SCRIPT A
+# (Added because they don't exist in Script B)
+# ======================================================
 
-checkpoint_path: ""  # Set this to load from a checkpoint, e.g., "/path/to/checkpoint/dir"
-curriculum_learning: true  # If true, load only weights (reset optimizer state for new tasks)
+# --- Training Extras ---
+jit: true
+save_policy: false
+anneal_method: linear # Required key for A's validator, even if B uses linear in code
+lr_decay_rate: 0.99        # Required key for A's validator
 
+# --- Environment & Tasks ---
+condition_on_task: true
+conditioning_type: "one_hot"  # or "embedding"
+use_optimistic_resets: true
 
-warmup_updates_logging: 25     # Shorter warm-up before we start calculating any metrics
+scoring_window_updates: 40
+mode: ${dicode_manager.mode}
+bonus_type: ${dicode_manager.bonus_type}
+dynamic_bonus_k: ${dicode_manager.dynamic_bonus_k}
 
-score_function: "learnability" # Options: PVL or MaxMC
+completion_bonus_scale: ${dicode_manager.completion_bonus_scale}
+completion_bonus_min: ${dicode_manager.completion_bonus_min}
+max_updates_per_session: ${dicode_manager.max_updates_per_session}
 
-scoring_window_updates: 20
-
-mode: ${manager.mode}
