@@ -1,0 +1,8 @@
+provider: gemini
+base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+model: gemini-2.5-pro
+llm_type: generation
+max_tokens: 16384
+temperature: 0.7
+top_p: 0.8
+think: false

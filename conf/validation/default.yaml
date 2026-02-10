@@ -1,0 +1,32 @@
+# --- Validation-Specific Rollout Config ---
+# This config is used by dicode.ppo_rnn.make_eval
+# It mirrors the structure of the 'training' config but is
+# used for the "heavyweight" validation rollouts.
+
+# --- Main Hyperparameters ---
+rollout_updates: 40      # The number of updates (batches) to run for validation.
+
+# --- Environment Hyperparameters ---
+num_envs: 1024             # Number of parallel envs for validation.
+num_steps: 128           # Number of steps per env per update.
+optimistic_reset_ratio: 16 # No optimistic resets during validation.
+
+# --- Network & PPO ---
+# (These are needed for GAE and network structure)
+layer_size: 512
+gamma: 0.99
+gae_lambda: 0.95
+
+# --- Task Conditioning ---
+# Inherit from training config by default, but can be overridden.
+condition_on_task: ${training.condition_on_task} 
+
+# --- Dummy values (Required by make_eval's structure, but not used) ---
+# These are here because make_eval is a copy of make_train and
+# defines an optimizer (tx) even though it doesn't use it.
+anneal_lr: False
+lr: 0.0
+lr_decay_rate: 0.99
+max_grad_norm: 0.5
+
+mode: ${dicode_manager.mode}

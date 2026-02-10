@@ -1,0 +1,5 @@
+# conf/evaluation/default.yaml
+
+num_steps: 8192
+num_envs: 1024
+optimistic_reset_ratio: 16

@@ -1,0 +1,4 @@
+checkpoint_path: ""
+fps: 50
+save_video: False
+output_video_path: "transtaformer_standard.mp4"

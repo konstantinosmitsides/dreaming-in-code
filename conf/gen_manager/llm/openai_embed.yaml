@@ -1,0 +1,5 @@
+provider: openai
+base_url: null
+model: text-embedding-3-small
+llm_type: embedding
+embedding_size: 1536

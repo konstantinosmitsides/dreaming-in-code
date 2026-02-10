@@ -1,0 +1,57 @@
+# conf/manager/default.yaml
+
+max_updates_per_session: 100     # Max training updates before forcing a stop
+reset_opt_state: false
+
+evolution_interval: 2
+
+# N: Number of tasks to sample from archive for training 
+training_sample_size_n: 16
+
+# This is the "capacity" of our replay buffer.
+active_task_capacity: 100
+
+# The minimum priority_score a new task must achieve to be added
+# to the active set if the set is *not* full.
+min_entry_score_threshold: 0
+
+# Defines the modular scoring function to use.
+# Options: "learnability", "pvl", "max_mc"
+score_function: "learnability"
+
+# The weighting for staleness vs. score during sampling (0.0 to 1.0).
+# 0.0 = 100% score-based sampling.
+# 1.0 = 100% staleness-based sampling.
+staleness_coeff: 0.3
+
+# Controls the "temperature" for rank-based sampling.
+# 1.0 = standard rank-based probability (1/rank).
+# < 1.0 = sharpens the distribution (focuses more on top tasks).
+# > 1.0 = smooths the distribution (more exploration).
+prioritization_temperature: 1.0
+
+# The method to use for score-based sampling.
+# Options: "rank", "topk"
+prioritization_method: "rank"
+
+# The 'k' value to use if prioritization_method is "topk".
+topk_k: 64
+
+# Task Completion Bonus Parameters
+# A scale of 2.0 ensures that for high-value tasks (e.g. >10 intrinsic points), the bonus scales proportionally.
+completion_bonus_scale: 2.0
+# A minimum bonus of 20.0 ensures that completing the task is always more valuable than moderate farming (~15pts).
+completion_bonus_min: 20.0
+
+bonus_type: "dynamic" # Options: "static", "dynamic"
+dynamic_bonus_k: 2.0 # The 'k' multiplier for the dynamic bonus
+
+mode: None
+
+original_task_proportion: 0.2
+
+num_generation_tasks: 10
+additional_num_parents: 2
+
+
+parent_selection: strict

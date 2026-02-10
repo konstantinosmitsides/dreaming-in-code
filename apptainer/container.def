@@ -1,0 +1,58 @@
+Bootstrap: docker
+From: python:3.12-slim
+
+%help
+    Solving Craftax with DiCode
+
+%files
+    # Copy necessary project files into the container
+    pyproject.toml /workspace/pyproject.toml
+    requirements.txt /workspace/requirements.txt
+    src /workspace/src
+    conf /workspace/conf
+    experiments /workspace/experiments
+    README.md /workspace/README.md
+
+%environment
+    export TZ=Europe/London
+    export OPENBLAS_NUM_THREADS=1
+    # Use the system python environment since we are in a container
+    export PYTHONPATH="/workspace/src:$PYTHONPATH"
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+
+    # Install system dependencies
+    apt-get update
+    apt-get install -y --no-install-recommends \
+        git \
+        ffmpeg \
+        build-essential
+
+    # Clean up apt to reduce image size
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+
+    cd /workspace
+
+    # Install Python dependencies using uv (fast!)
+    pip install uv
+    
+    # Install JAX (CUDA 12)
+    uv pip install --system "jax[cuda12]"
+    
+    # Install the project in editable mode with all dependencies
+    # We use --system to install into the global python environment of the container
+    uv pip install --system -e .[dev,evaluation]
+
+    # === Pre-generate Craftax Textures ===
+    # Triggers texture generation during build time to save runtime overhead
+    echo "Pre-generating Craftax textures..."
+    export JAX_PLATFORMS=cpu
+    python3 -c "from craftax.craftax.constants import BLOCK_PIXEL_SIZE_IMG; print('Textures generated successfully')"
+    python3 -c "from craftax.craftax_classic.constants import BLOCK_PIXEL_SIZE_IMG; print('Classic textures generated')"
+    # ==========================================
+
+%runscript
+    # Default entry point
+    exec python3 /workspace/experiments/training/run_dicode.py "$@"

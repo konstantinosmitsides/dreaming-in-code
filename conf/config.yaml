@@ -1,0 +1,26 @@
+# conf/config.yaml
+
+hydra:
+  job:
+    chdir: true
+  run:
+    dir: outputs/${now:%Y-%m-%d_%H%M%S_%f}
+
+defaults:
+  - dicode_manager: default
+  - gen_manager: default
+  - training: ppo_tr
+  - evaluation: default
+  - validation: default
+  - visualize: default
+  - _self_ # Allows overriding from this file or the command line
+
+# You can put global experiment settings here
+use_wandb: true
+wandb_project: "DiCode" # [REQUIRED] Your WandB project name (e.g. "dreaming-in-code")
+wandb_entity: "airl-lab" # [OPTIONAL] Your WandB username or team name 
+seed: 42
+
+ablation: false
+
+checkpoint_dir: "rl_checkpoints/"

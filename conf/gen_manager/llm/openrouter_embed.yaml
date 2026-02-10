@@ -1,0 +1,5 @@
+provider: openrouter
+base_url: https://openrouter.ai/api/v1
+model: openai/text-embedding-3-small
+llm_type: embedding
+embedding_size: 1536

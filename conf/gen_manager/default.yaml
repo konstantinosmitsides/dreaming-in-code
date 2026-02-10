@@ -1,0 +1,32 @@
+# conf/gen_manager/default.yaml
+
+defaults:
+  - llm@task_generator: local_gen
+  - llm@env_generator: local_gen
+  - llm@interestingness_critic: local_gen
+  - llm@embedding_model: local_embed
+
+tags: []
+
+num_generations: 5
+num_examples: 6
+num_parents: 1
+
+mode: ${dicode_manager.mode}
+graph_path: "task_graph.graphml"
+
+example_paths:
+  - src/minicraftax/tasks/seed_tasks/collecting.py
+  - src/minicraftax/tasks/seed_tasks/combat.py
+  - src/minicraftax/tasks/seed_tasks/crafting.py
+  - src/minicraftax/tasks/seed_tasks/survive.py
+
+prompts:
+  env_generation: "dicode.dreaming.prompts.cl_.gen_env"
+  wrapper_mechanics: "dicode.dreaming.prompts.cl_.minicraftax_coder"
+  wrapper_mechanics_r: "dicode.dreaming.prompts.cl_.minicraftax_coder_r"
+  craftax_mechanics: "dicode.dreaming.prompts.cl_.knowledge_base_designer"
+  craftax_code: "dicode.dreaming.prompts.cl_.craftax_coder"
+  evolve_mastered: "dicode.dreaming.prompts.dicode.evolve"
+  evolve_mastered_r: "dicode.dreaming.prompts.cl_.evolve_mastered_r"
+  ablation: "dicode.dreaming.prompts.dicode.ablation"

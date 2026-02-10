@@ -1,0 +1,5 @@
+provider: local
+base_url: ${oc.env:EMBEDDING_SERVER_URL,http://localhost:5000/v1}
+model: Qwen/Qwen3-Embedding-0.6B     
+llm_type: embedding
+embedding_size: 1024

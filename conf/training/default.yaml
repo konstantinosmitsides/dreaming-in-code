@@ -1,0 +1,65 @@
+# conf/training/default.yaml
+
+env_name: Craftax-Symbolic-v1
+num_envs: 4096
+total_timesteps: 1e9
+lr: 2e-4
+num_steps: 64
+update_epochs: 4
+num_minibatches: 8
+gamma: 0.99
+gae_lambda: 0.8
+clip_eps: 0.2
+ent_coef: 0.01
+vf_coef: 0.5
+max_grad_norm: 1.0
+activation: tanh
+anneal_lr: false
+lr_decay_rate: 0.99
+anneal_method: exponential # Options: "exponential", "linear"
+debug: true
+jit: true
+seed: 42
+use_wandb: true
+save_policy: false
+num_repeats: 1
+layer_size: 512
+num_unique_envs: 1
+perf_alpha: 0.1
+mastery_threshold: 0.90
+min_samples: 512
+curriculum_update_interval: 50
+lp_window_k: 10
+warmup_updates: 100
+lp_stop_threshold: 0.001
+lp_patience: 15
+ema_alpha_sr: 0.1
+ema_alpha_lp: 0.1
+
+pacing_mechanism: "global_average"  # Options: "global_average", "per_task"
+patience_termination_frac: 0.5 # Terminate when 80% of tasks have exhausted their patience
+
+lp_mechanism: "regression"  # Options: "ema_diff", "regression"
+lp_regression_window: 50    # Number of recent valid SR data points to use for the regression
+
+condition_on_task: true
+conditioning_type: "embedding" 
+embedding_size: 1024
+
+
+use_optimistic_resets: true
+optimistic_reset_ratio: 16
+
+
+
+checkpoint_path: ""  # Set this to load from a checkpoint, e.g., "/path/to/checkpoint/dir"
+curriculum_learning: true  # If true, load only weights (reset optimizer state for new tasks)
+
+
+warmup_updates_logging: 25     # Shorter warm-up before we start calculating any metrics
+
+score_function: "learnability" # Options: PVL or MaxMC
+
+scoring_window_updates: 20
+
+mode: ${manager.mode}

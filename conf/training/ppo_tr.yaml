@@ -1,0 +1,70 @@
+# ======================================================
+# PART 1: EXACT CONFIGURATION FROM SCRIPT B (Priority)
+# ======================================================
+env_name: Craftax-Symbolic-v1
+lr: 2e-4
+min_lr: 2e-6
+num_envs: 1024    
+num_steps: 128   
+total_timesteps: 2_005_401_600
+update_epochs: 4
+num_minibatches: 8
+gamma: 0.999     
+gae_lambda: 0.8
+clip_eps: 0.2
+ent_coef: 0.002   
+vf_coef: 0.5
+max_grad_norm: 1.0
+activation: relu  
+anneal_lr: true   
+# --- Transformer Architecture (From Script B) ---
+qkv_features: 256
+embed_size: 256       
+num_heads: 8
+num_layers: 2
+hidden_layers: 256   
+window_mem: 128
+window_grad: 64
+gating: true
+gating_bias: 2.0
+
+# --- System & Logging ---
+optimistic_reset_ratio: 16
+use_wandb: true
+wandb_project: SIACE
+wandb_entity: airl-lab
+debug: true
+num_repeats: 1
+
+# --- Checkpointing ---
+checkpoint_dir: "rl_checkpoints/"
+checkpoint_interval_updates: 100
+checkpoint_keep_period: 300
+max_checkpoints_to_keep: 10
+load_checkpoint: False
+
+# ======================================================
+# PART 2: ORCHESTRATOR PARAMS FROM SCRIPT A
+# (Added because they don't exist in Script B)
+# ======================================================
+
+# --- Training Extras ---
+jit: true
+save_policy: false
+anneal_method: linear # Required key for A's validator, even if B uses linear in code
+lr_decay_rate: 0.99        # Required key for A's validator
+
+# --- Environment & Tasks ---
+condition_on_task: true
+conditioning_type: "one_hot"  # or "embedding"
+use_optimistic_resets: true
+
+scoring_window_updates: 40
+mode: ${dicode_manager.mode}
+bonus_type: ${dicode_manager.bonus_type}
+dynamic_bonus_k: ${dicode_manager.dynamic_bonus_k}
+
+completion_bonus_scale: ${dicode_manager.completion_bonus_scale}
+completion_bonus_min: ${dicode_manager.completion_bonus_min}
+max_updates_per_session: ${dicode_manager.max_updates_per_session}
+
