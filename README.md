@@ -48,16 +48,12 @@ By structuring the curriculum through code generation, DiCode:
 * **Solves the "Impossible":** Achieves non-zero success on late-game tasks (e.g., *Defeat Gnome Warrior*, *Defeat Gnome Archer*) where baselines fail completely (**0% success**).
 * **Unlocks Exploration:** Scaffolds instrumental milestones (e.g., *Make Iron Armour*), enabling the agent to survive long enough to reach and master deep exploration targets.
 
-<details>
-<summary><b>🎥 Watch Gameplay Comparison</b></summary>
-<br/>
+### 🎥 Watch Gameplay Comparison
 
 | RL Baseline (PPO-GTrXL) on Craftax | DiCode Agent (Ours) on Craftax |
 | :---: | :---: |
 | <img src="assets/baseline_gameplay.gif" width="100%" alt="Baseline Gameplay"> | <img src="assets/dicode_gameplay.gif" width="100%" alt="DiCode Gameplay"> |
 | *Struggles with initial survival.* | *Reaches late-game content.* |
-
-</details>
 
 ---
 
