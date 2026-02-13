@@ -1,13 +1,17 @@
 <div align="center">
 
-# Dreaming in Code
-### Curriculum Learning in Open-Ended Worlds
+# Dreaming in Code for Curriculum Learning in Open-Ended Worlds
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![JAX](https://img.shields.io/badge/JAX-Accelerated-9cf)](https://github.com/google/jax)
+[![Paper](https://img.shields.io/badge/arXiv-Paper-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2602.08194)
+[![Project Website](https://img.shields.io/badge/Project-Website-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://konstantinosmitsides.github.io/dreaming-in-code)
 
-[**[Paper]**](https://arxiv.org/abs/2602.08194) &nbsp;&nbsp; [**[Project Website]**](https://konstantinosmitsides.github.io/dreaming-in-code)
+<br>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg?style=flat-square)](https://www.python.org/downloads/)
+[![JAX](https://img.shields.io/badge/JAX-Accelerated-9cf?style=flat-square)](https://github.com/google/jax)
+
+<br>
 
 *Foundation Models that "dream" and materialize executable environment code to scaffold learning in open-ended worlds.*
 
