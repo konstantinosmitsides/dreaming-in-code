@@ -42,7 +42,7 @@ The framework operates in a closed feedback loop:
 <img src="assets/learning_curve.png" width="80%" alt="Learning Curve Comparison">
 </div>
 
-> **SOTA Performance:** DiCode dominates throughout training, achieving a **16% improvement** in mean return over the strongest baseline (PPO-GTrXL).
+> **SOTA Performance on [Craftax](https://github.com/MichaelTMatthews/Craftax):** DiCode dominates throughout training, achieving a **16% improvement** in mean return over the strongest baseline (PPO-GTrXL).
 
 By structuring the curriculum through code generation, DiCode:
 * **Solves the "Impossible":** Achieves non-zero success on late-game tasks (e.g., *Defeat Gnome Warrior*, *Defeat Gnome Archer*) where baselines fail completely (**0% success**).
