@@ -82,7 +82,7 @@ class LLM:
 				"system_prompt": system_prompt,
 				"user_prompt": user_prompt,
 				"content": chat_completion.choices[0].message.content,
-				"reasoning_content": chat_completion.choices[0].message.reasoning_content,
+				"reasoning_content": getattr(chat_completion.choices[0].message, "reasoning_content", None),
 				"error": None,
 			}
 		except Exception as e:
