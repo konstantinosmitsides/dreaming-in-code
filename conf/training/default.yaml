@@ -31,8 +31,8 @@ gating_bias: 2.0
 # --- System & Logging ---
 optimistic_reset_ratio: 16
 use_wandb: true
-wandb_project: SIACE
-wandb_entity: airl-lab
+wandb_project: DiCode
+wandb_entity: null
 debug: true
 num_repeats: 1
 

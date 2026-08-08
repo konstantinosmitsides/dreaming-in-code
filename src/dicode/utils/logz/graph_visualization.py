@@ -858,14 +858,19 @@ def create_graph_visualization_html(graphml_path: str) -> str:
     return final_html
 
 
-# (Safe test block for your `logging_utils.py`)
 if __name__ == "__main__":
-    GRAPHML_FILE = "/home_nfs/konstantinos/projects/DiCode/personal_data/paper_results/DICODE/31249/task_graph.graphml"
-    OUTPUT_FILE = "personal_data/html_archives/run_5_archive.html"
+    import argparse
 
-    final_html = create_graph_visualization_html(GRAPHML_FILE)
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    parser = argparse.ArgumentParser(
+        description="Render a DiCode task archive (.graphml) to a standalone HTML visualization."
+    )
+    parser.add_argument("graphml", help="Path to a task_graph.graphml produced by a DiCode run.")
+    parser.add_argument("-o", "--output", default="archive.html", help="Output HTML path.")
+    args = parser.parse_args()
+
+    final_html = create_graph_visualization_html(args.graphml)
+    with open(args.output, "w", encoding="utf-8") as f:
         f.write(final_html)
 
     print("✅ Successfully created visualization with 'Active Set' borders!")
-    print(f"   Please open '{OUTPUT_FILE}' in your web browser.")
+    print(f"   Please open '{args.output}' in your web browser.")

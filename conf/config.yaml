@@ -18,7 +18,7 @@ defaults:
 # You can put global experiment settings here
 use_wandb: true
 wandb_project: "DiCode" # [REQUIRED] Your WandB project name (e.g. "dreaming-in-code")
-wandb_entity: "airl-lab" # [OPTIONAL] Your WandB username or team name 
+wandb_entity: null # [OPTIONAL] Your WandB username or team name; null uses your default entity
 seed: 42
 
 ablation: false
