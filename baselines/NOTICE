@@ -1,0 +1,55 @@
+This directory contains the UED baselines used in "Dreaming in Code" (ICML 2026).
+
+The code here is DERIVED WORK. It is licensed under the Apache License 2.0 (see
+baselines/LICENSE in this directory), not under the MIT license that covers the rest
+of this repository.
+
+================================================================================
+Attribution
+================================================================================
+
+The baseline implementations are derived from:
+
+  NCC-UED — "An Optimisation Framework for Unsupervised Environment Design"
+    Nathan Monette et al., Reinforcement Learning Conference (RLC) 2025
+    https://github.com/nmonette/NCC-UED
+    https://arxiv.org/abs/2505.20659
+    Licensed under Apache License 2.0
+
+NCC-UED is itself built on, and we gratefully acknowledge:
+
+  SFL — "Sampling for Learnability"
+    Alexander Rutherford et al.
+    https://github.com/amacrutherford/sampling-for-learnability
+
+  JaxUED
+    https://github.com/DramaCow/jaxued
+
+  XLand-MiniGrid
+    https://github.com/dunnolab/xland-minigrid
+
+================================================================================
+Modifications made for "Dreaming in Code"
+================================================================================
+
+The following changes were made to the NCC-UED Craftax baselines. They are stated
+here to satisfy Section 4(b) of the Apache License 2.0.
+
+1. Policy architecture replaced.
+   The original implementations use a feed-forward policy. Both scripts here use the
+   Gated Transformer-XL (GTrXL) policy imported from `dicode.transformer.transformerXL`
+   — the same module DiCode itself uses. This is deliberate: the paper standardizes the
+   underlying RL agent across all methods so the comparison isolates the curriculum
+   mechanism rather than the policy class.
+
+2. PPO hyperparameters changed.
+   The argparse defaults were set to the paper's shared configuration (Table 6):
+   learning rate 2e-4 annealed linearly, 1024 environments x 128 steps, 4 update epochs,
+   8 minibatches, gamma 0.999, GAE lambda 0.8, clip 0.2, entropy coefficient 0.002,
+   value coefficient 0.5, max gradient norm 1.0. These defaults are the values the
+   published runs used.
+
+3. Scope.
+   Only the components used in the paper are included. The NCC method itself, other
+   environments (MiniGrid, XLand-MiniGrid), and the deploy/analysis scripts from the
+   upstream repository are not part of this release.

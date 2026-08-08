@@ -261,7 +261,7 @@ def process_evaluation_metrics(raw_metrics: dict) -> dict:
 
 @hydra.main(
 	version_base="1.2",
-	config_path="/home_nfs/konstantinos/projects/MiniCraftax/conf/",
+	config_path="../../../conf/",
 	config_name="config",
 )
 def main(config: DictConfig) -> None:

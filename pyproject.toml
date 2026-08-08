@@ -19,6 +19,7 @@ dependencies = [
     "chex",
     "distrax",
     "craftax",
+    "jaxued",
     "hydra-core",
     "omegaconf",
     "wandb",

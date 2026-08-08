@@ -12,3 +12,8 @@ outputs
 blob
 *.sif
 .env
+
+# Baseline training artefacts (baselines/plr.py, baselines/sfl.py)
+checkpoints
+craftax_params
+rl_checkpoints
