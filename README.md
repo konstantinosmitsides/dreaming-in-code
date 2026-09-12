@@ -2,6 +2,8 @@
 
 # Dreaming in Code for Curriculum Learning in Open-Ended Worlds
 
+**Published at ICML 2026**
+
 [![Paper](https://img.shields.io/badge/arXiv-Paper-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2602.08194)
 [![Project Website](https://img.shields.io/badge/Project-Website-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://konstantinosmitsides.github.io/dreaming-in-code)
 
@@ -21,7 +23,7 @@
 
 ## 💡 What is this?
 
-**Dreaming in Code (DiCode)** is an Unsupervised Enviornment Design framework that uses Foundation Models (FMs) to generate **executable Python code** for training environments (or levels). Instead of just randomizing parameters, DiCode writes the logic itself – creating a curriculum of distinct levels that bridge the gap between an agent's current skills and the complexities of open-ended worlds.
+**Dreaming in Code (DiCode)** is an Unsupervised Environment Design framework that uses Foundation Models (FMs) to generate **executable Python code** for training environments (or levels). Instead of just randomizing parameters, DiCode writes the logic itself – creating a curriculum of distinct levels that bridge the gap between an agent's current skills and the complexities of open-ended worlds.
 
 <div align="center">
 <br/>
@@ -42,7 +44,7 @@ The framework operates in a closed feedback loop:
 <img src="assets/learning_curve.png" width="80%" alt="Learning Curve Comparison">
 </div>
 
-> **SOTA Performance on [Craftax](https://github.com/MichaelTMatthews/Craftax):** DiCode dominates throughout training, achieving a **16% improvement** in mean return over the strongest baseline (PPO-GTrXL).
+> **SOTA Performance on [Craftax](https://github.com/MichaelTMatthews/Craftax):** DiCode dominates throughout training, achieving a **17% improvement** in mean return over the strongest baseline (PPO-GTrXL).
 
 By structuring the curriculum through code generation, DiCode:
 * **Solves the "Impossible":** Achieves non-zero success on late-game tasks (e.g., *Defeat Gnome Warrior*, *Defeat Gnome Archer*) where baselines fail completely (**0% success**).
@@ -203,13 +205,11 @@ The PLR, DR and SFL implementations are derived from [NCC-UED](https://github.co
 ## 📜 Citation
 
 ```bibtex
-@misc{mitsides2026dreamingcodecurriculumlearning,
-      title={Dreaming in Code for Curriculum Learning in Open-Ended Worlds}, 
-      author={Konstantinos Mitsides and Maxence Faldor and Antoine Cully},
-      year={2026},
-      eprint={2602.08194},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2602.08194}, 
+@inproceedings{mitsides2026dreaming,
+  title     = {Dreaming in Code for Curriculum Learning in Open-Ended Worlds},
+  author    = {Mitsides, Konstantinos and Faldor, Maxence and Cully, Antoine},
+  booktitle = {Proceedings of the 43rd International Conference on Machine Learning (ICML)},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2602.08194}
 }
 ```
